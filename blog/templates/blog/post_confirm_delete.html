@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Delete Post - Beyond Borders{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <h2 class="card-title mb-4">Delete Post</h2>
+                <p class="lead">Are you sure you want to delete "{{ object.title }}"?</p>
+                <p class="text-muted">This action cannot be undone.</p>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-danger">Yes, delete it</button>
+                        <a href="{% url 'post_detail' pk=object.pk %}" class="btn btn-outline-secondary">No, take me back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

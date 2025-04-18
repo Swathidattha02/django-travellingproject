@@ -1,0 +1,73 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    {% if form.instance.pk %}Edit{% else %}New{% endif %} Post - Beyond Borders
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title mb-4">
+                    {% if form.instance.pk %}
+                        Edit Post
+                    {% else %}
+                        Create New Post
+                    {% endif %}
+                </h2>
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="id_title" class="form-label">Title</label>
+                        {{ form.title }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_location" class="form-label">Location</label>
+                        {{ form.location }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_content" class="form-label">Travel Experience</label>
+                        {{ form.content }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_stay_details" class="form-label">Stay Details</label>
+                        {{ form.stay_details }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_food_details" class="form-label">Food Experience</label>
+                        {{ form.food_details }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_transport_details" class="form-label">Transport Details</label>
+                        {{ form.transport_details }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_image" class="form-label">Post Image</label>
+                        {{ form.image }}
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            {% if form.instance.pk %}
+                                Update Post
+                            {% else %}
+                                Create Post
+                            {% endif %}
+                        </button>
+                        <a href="{% url 'post_list' %}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
